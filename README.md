@@ -16,7 +16,7 @@ Port 4000
 
 ## Client
 
-A basic REACT front end to show dashboard information.
+A basic REACT front end to show dashboard information. To begin...
 
 cd/client
 
