@@ -27,7 +27,6 @@ export const allOrders= async (ctx, next)=>{
             fetchNextPage()
         }).then(()=>{
             ctx.body=result
-            console.log(result.length)
             next()  
        })
   

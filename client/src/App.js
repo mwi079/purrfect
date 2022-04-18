@@ -16,7 +16,6 @@ function App() {
 
 
   useEffect(()=>{
-    //! spinner starts
     const thisMonth=moment().format('MM/YYYY')
     axios('http://localhost:4000/').then(({data})=>{
       setOrders(data.length)
