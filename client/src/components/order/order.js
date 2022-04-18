@@ -4,9 +4,11 @@ import './style.css'
 export default function Order(props){
     return(
         <div className="order">
-        <p>{props.order.product_name}</p>
+            <div className="orderContent">
+        <div><b>Name:</b> {props.order.product_name}</div>
         
-        <p>{props.order.order_placed}</p>
+        <div><b>Order Placed:</b> {props.order.order_placed}</div>
+        </div>
         </div>
     )
 }
