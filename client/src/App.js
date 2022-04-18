@@ -31,14 +31,17 @@ function App() {
     <center>
     <h2>Purrfect Performance</h2>
     </center>
-    <center>Total Orders: {orders}</center>
-    <center>Orders in progress: {ordersInProgress}</center>
-    <center>Orders this month: {ordersThisMonth}</center>
-    <center>Revenue: £{revenue}</center>
-    <center>
-      {loading? <LoadingSpin/>:<List orders={recentOrders}/>}
-    </center>
-
+    {loading? <center><LoadingSpin/></center>:
+    <>
+     <center>Total Orders: {orders}</center>
+     <center>Orders in progress: {ordersInProgress}</center>
+     <center>Orders this month: {ordersThisMonth}</center>
+      <center>Revenue: £{revenue}</center>
+      <center>
+       <List orders={recentOrders}/>
+      </center>
+      </>
+}
     </>
   );
 }
