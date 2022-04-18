@@ -3,7 +3,8 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react';
 import List from './components/list'
 import LoadingSpin from "react-loading-spin";
-import moment from 'moment';
+import { getOrders, getOrdersInProgress, getOrdersThisMonth, getRecentOrders, getRevenue } from './helpers';
+
 
 
 function App() {
@@ -16,27 +17,26 @@ function App() {
 
 
   useEffect(()=>{
-    const thisMonth=moment().format('MM/YYYY')
     axios('http://localhost:4000/').then(({data})=>{
-      setOrders(data.length)
-      setOrdersThisMonth(data.filter(order=>moment(order.order_placed).isSame(thisMonth,'month')).length)
-      setOrdersInProgress(data.filter(order=>order.order_status==='in_progress').length)
-      setRevenue(data.map(order=>order.price).reduce((a,b)=>b+a,0).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
-      setRecentOrders(data.slice(0,10))
+      setOrders(getOrders(data))
+      setOrdersThisMonth(getOrdersThisMonth(data))
+      setOrdersInProgress(getOrdersInProgress(data))
+      setRevenue(getRevenue(data))
+      setRecentOrders(getRecentOrders(data))
       setLoading(false)
-    })
+    }).catch((error)=>console.log(error))
   },[])
   return (
     <>
     <center>
-    <h2>Purrfect Performance</h2>
+    <h2>Purrformance</h2>
     </center>
     {loading? <center><LoadingSpin/></center>:
     <>
-     <center>Total Orders: {orders}</center>
-     <center>Orders in progress: {ordersInProgress}</center>
-     <center>Orders this month: {ordersThisMonth}</center>
-      <center>Revenue: £{revenue}</center>
+     <center><b>Total Orders:</b> {orders}</center>
+     <center><b>Orders in progress:</b> {ordersInProgress}</center>
+     <center><b>Orders this month:</b> {ordersThisMonth}</center>
+      <center><b>Revenue:</b> £{revenue}</center>
       <center>
        <List orders={recentOrders}/>
       </center>
