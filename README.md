@@ -35,7 +35,7 @@ cd client
 npm run test
 
 ## Docker
-This application is also containerised via docker for each of distribution.
+This application is also containerised via docker for ease of distribution.
 
 docker-compose-up --build
 
