@@ -1,11 +1,9 @@
 import './App.css';
 import axios from 'axios'
 import React, { useEffect, useState } from 'react';
-import List from './components/list'
+import List from './components/list.js'
 import LoadingSpin from "react-loading-spin";
-import { getOrders, getOrdersInProgress, getOrdersThisMonth, getRecentOrders, getRevenue } from './helpers';
-
-
+import { getOrders, getOrdersInProgress, getOrdersThisMonth, getRecentOrders, getRevenue } from './helpers.js';
 
 function App() {
   const [orders,setOrders]=useState([])

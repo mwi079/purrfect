@@ -23,11 +23,13 @@ export const allOrders= async (ctx, next)=>{
             fetchNextPage()
         }).then(()=>{
             ctx.body=result
+            ctx.status=200
             next()  
        })
     }
     catch(error){
-        console.log(error)
+        ctx.body=error
+        ctx.status=500
     }
   
 };
